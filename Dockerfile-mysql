@@ -1,0 +1,5 @@
+FROM mysql:5.7
+COPY . /tmp/
+EXPOSE 3306
+CMD ["./tmp/entryenv.sh"]
+#ENTRYPOINT ["./tmp/entryenv.sh"]
