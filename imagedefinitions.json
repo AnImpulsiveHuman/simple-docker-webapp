@@ -5,6 +5,6 @@
   },
   {
     "name": "mydb",
-    "imageUri": "public.ecr.aws/s5o7d0z2/vishal-demo-repo:mydb"
+    "imageUri": "mysql:5.7"
   }
 ]
