@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mywebapp",
+    "imageUri": "public.ecr.aws/s5o7d0z2/vishal-demo-repo:mywebapp"
+  },
+  {
+    "name": "mydb",
+    "imageUri": "public.ecr.aws/s5o7d0z2/jenkins-av:mydb"
+  }
+]
