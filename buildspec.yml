@@ -12,8 +12,8 @@ phases:
       #- IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - docker build -t $REPOSITORY_URI:mywebapp .
-      - docker build -t $REPOSITORY_URI:mydb -f Dockerfile-mysql
+      - docker build . -t $REPOSITORY_URI:mywebapp
+      - docker build -f Dockerfile-mysql -t $REPOSITORY_URI:mydb 
   post_build:
     commands:
       # Check if the build stage is successful
