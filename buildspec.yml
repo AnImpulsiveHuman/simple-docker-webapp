@@ -2,7 +2,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      # Loggin in to Dockerhub
+      # Loggin in to DockerHub
       - echo $dockerpass | docker login --username $dockeruser --password-stdin
       # Logging in to ECR
       - echo Logging in to Amazon ECR...
