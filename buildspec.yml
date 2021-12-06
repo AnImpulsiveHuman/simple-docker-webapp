@@ -22,3 +22,7 @@ phases:
       # Pushing the image to ECR
       - docker push $REPOSITORY_URI:mywebapp
       - docker push $REPOSITORY_URI:mydb
+artifacts:
+  files:
+    - 'imagedefinitions.json'
+  name: artifacts  
