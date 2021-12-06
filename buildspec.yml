@@ -1,0 +1,24 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      # Logging in to ECR
+      - echo Logging in to Amazon ECR...
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s5o7d0z2
+      #- docker login --username AWS -p $(aws ecr-public get-login-password --region us-east-1) public.ecr.aws/s5o7d0z2
+      - REPOSITORY_URI=public.ecr.aws/s5o7d0z2/vishal-demo-repo
+      # Storing the commit hash
+      #- COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      #- IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - docker build -t $REPOSITORY_URI:mywebapp .
+      - docker build -t $REPOSITORY_URI:mydb -f Dockerfile-mysql
+  post_build:
+    commands:
+      # Check if the build stage is successful
+      - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
+      - echo Build completed on `date`
+      # Pushing the image to ECR
+      - docker push $REPOSITORY_URI:mywebapp
+      - docker push $REPOSITORY_URI:mydb
